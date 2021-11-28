@@ -1,0 +1,12 @@
+.label {
+  height: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  color: rgb(6, 14, 131);
+}
+
+.input {
+  margin-left: 10px;
+  border-radius: 5px;
+}
