@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { contactsSelectors, contactsOperations } from "redux/contacts";
 import { useEffect } from "react";
 
+console.log("contactsOperations", contactsOperations);
 export default function ContactsList() {
   const contacts = useSelector(contactsSelectors.getFilteredContacts);
   const loaderContacts = useSelector(contactsSelectors.isLoadingContacts);

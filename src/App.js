@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Form from "./components/Form";
 import Filter from "./components/Filter";
 import AppBar from "components/AppBar";
@@ -12,10 +14,15 @@ import HomeView from "views/HomeView";
 
 import PrivateRoute from "./components/routes/PrivateRoute";
 import PublicRoute from "./components/routes/PublicRoute";
-
-const isAuth = false;
+import { authOperations } from "./redux/auth";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Container>
       <AppBar />
@@ -27,22 +34,16 @@ const App = () => {
       <ContactsList /> */}
 
       <Routes>
-        <Route
-          path="/"
-          element={<PrivateRoute isAuth={isAuth} component={HomeView} />}
-        />
-        <Route
-          path="/login"
-          element={<PublicRoute isAuth={isAuth} component={Login} />}
-        />
+        <Route path="/login" element={<PublicRoute component={Login} />} />
         <Route
           path="/register"
-          element={<PublicRoute isAuth={isAuth} component={Register} />}
+          element={<PublicRoute component={Register} />}
         />
         <Route
           path="/contacts"
-          element={<PrivateRoute isAuth={isAuth} component={Contacts} />}
+          element={<PrivateRoute component={Contacts} />}
         />
+        <Route path="/" element={<PrivateRoute component={HomeView} />} />
       </Routes>
     </Container>
   );

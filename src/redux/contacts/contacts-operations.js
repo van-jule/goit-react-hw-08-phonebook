@@ -26,7 +26,7 @@ axios.defaults.baseURL = "https://6197aefa164fa60017c22d4f.mockapi.io/contacts";
 //   }
 // );
 
-const fetchContacts = () => async (dispatch) => {
+export const fetchContacts = () => async (dispatch) => {
   dispatch(fetchContactsRequest);
 
   try {
@@ -42,7 +42,7 @@ const fetchContacts = () => async (dispatch) => {
   //     .catch((error) => dispatch(fetchContactsError(error)));
 };
 
-const addContact =
+export const addContact =
   ({ name, number }) =>
   (dispatch) => {
     const contact = { name, number };
@@ -79,7 +79,7 @@ const addContact =
 //   }
 // );
 
-const deleteContact = (contactId) => (dispatch) => {
+export const deleteContact = (contactId) => (dispatch) => {
   dispatch(deleteContactRequest());
 
   axios
@@ -88,10 +88,10 @@ const deleteContact = (contactId) => (dispatch) => {
     .catch((error) => dispatch(deleteContactError(error)));
 };
 
-const contactsOperations = {
-  fetchContacts,
-  addContact,
-  deleteContact,
-};
+// const contactsOperations = {
+//   fetchContacts,
+//   addContact,
+//   deleteContact,
+// };
 
-export default contactsOperations;
+// export default contactsOperations;
