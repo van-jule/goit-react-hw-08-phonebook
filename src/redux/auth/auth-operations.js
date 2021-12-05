@@ -20,44 +20,52 @@ const token = {
 //   },
 // });
 
-const register = createAsyncThunk("auth/register", async (credentials) => {
-  try {
-    const { data } = await axios.post("/users/signup", credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+const register = createAsyncThunk(
+  "auth/register",
+  async (credentials, { rejectWidthValue }) => {
+    try {
+      const { data } = await axios.post("/users/signup", credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      rejectWidthValue(error.message);
+    }
   }
-});
+);
 
-const logIn = createAsyncThunk("auth/login", async (credentials) => {
-  try {
-    const { data } = await axios.post("/users/login", credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+const logIn = createAsyncThunk(
+  "auth/login",
+  async (credentials, { rejectWidthValue }) => {
+    try {
+      const { data } = await axios.post("/users/login", credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      rejectWidthValue(error.message);
+    }
   }
-});
+);
 
-const logOut = createAsyncThunk("auth/logout", async () => {
-  try {
-    await axios.post("/users/logout");
-    token.unset();
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+const logOut = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWidthValue }) => {
+    try {
+      await axios.post("/users/logout");
+      token.unset();
+    } catch (error) {
+      rejectWidthValue(error.message);
+    }
   }
-});
+);
 
 const fetchCurrentUser = createAsyncThunk(
   "auth/refresh",
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      console.log("токена нет, выходим");
-      return thunkAPI.rejectWithValue();
+      return rejectWithValue();
       //   return state;
     }
 
@@ -65,7 +73,9 @@ const fetchCurrentUser = createAsyncThunk(
     try {
       const { data } = await axios.get("/users/current");
       return data;
-    } catch (error) {}
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
   }
 );
 

@@ -29,7 +29,7 @@ export default function Login() {
 
   return (
     <div className={styles.formWrap}>
-      <h1 className={styles.title}>Login</h1>
+      <h1 className={styles.title}>Log in</h1>
 
       <form onSubmit={handleSubmit} autoComplete="off" className={styles.form}>
         <label className={styles.label}>
