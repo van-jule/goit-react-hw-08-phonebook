@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../redux/auth";
+import styles from "./Form.module.css";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -31,17 +32,17 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h1>Страница регистрации</h1>
+    <div className={styles.formWrap}>
+      <h1 className={styles.title}>Registration</h1>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Имя
+      <form onSubmit={handleSubmit} autoComplete="off" className={styles.form}>
+        <label className={styles.label}>
+          Name
           <input type="text" name="name" value={name} onChange={handleChange} />
         </label>
 
-        <label>
-          Почта
+        <label className={styles.label}>
+          Email
           <input
             type="email"
             name="email"
@@ -50,8 +51,8 @@ export default function Register() {
           />
         </label>
 
-        <label>
-          Пароль
+        <label className={styles.label}>
+          Password
           <input
             type="password"
             name="password"
@@ -60,7 +61,9 @@ export default function Register() {
           />
         </label>
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit" className={styles.button}>
+          Register
+        </button>
       </form>
     </div>
   );

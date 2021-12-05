@@ -7,10 +7,5 @@ export default function PrivateRoute({ component: Component }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   console.log("isLoggedIn", isLoggedIn);
-  return (
-    <>
-      <h1>PRIVATE</h1>
-      {isLoggedIn ? <Component /> : <Navigate to="/login" />}
-    </>
-  );
+  return <>{isLoggedIn ? <Component /> : <Navigate to="/login" />}</>;
 }

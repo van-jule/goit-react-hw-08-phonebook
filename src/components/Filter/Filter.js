@@ -12,15 +12,19 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   return (
-    <label className={styles.label}>
-      Find contacts by name
-      <input
-        className={styles.input}
-        type="text"
-        value={value}
-        onChange={(e) => dispatch(contactsActions.changeFilter(e.target.value))}
-      />
-    </label>
+    <div className={styles.filterWrap}>
+      <label className={styles.label}>
+        Find contacts by name
+        <input
+          className={styles.input}
+          type="text"
+          value={value}
+          onChange={(e) =>
+            dispatch(contactsActions.changeFilter(e.target.value))
+          }
+        />
+      </label>
+    </div>
   );
 };
 

@@ -11,10 +11,5 @@ export default function PublicRoute({
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const shouldNavigate = isLoggedIn && restricted;
   console.log("shouldNavigate", shouldNavigate);
-  return (
-    <>
-      <h1>PUBLIC</h1>
-      {shouldNavigate ? <Navigate to={redirectTo} /> : <Component />}
-    </>
-  );
+  return <>{shouldNavigate ? <Navigate to={redirectTo} /> : <Component />}</>;
 }

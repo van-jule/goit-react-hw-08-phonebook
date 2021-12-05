@@ -6,9 +6,7 @@ import ContactsList from "components/ContactsList";
 export default function Contacts() {
   return (
     <div>
-      <h2>Phonebook</h2>
       <Form />
-      <h2>Contacts</h2>
       <Filter />
       <ContactsList />
     </div>

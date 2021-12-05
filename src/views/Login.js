@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../redux/auth";
+import styles from "./Form.module.css";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -27,12 +28,12 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Страница логина</h1>
+    <div className={styles.formWrap}>
+      <h1 className={styles.title}>Login</h1>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Почта
+      <form onSubmit={handleSubmit} autoComplete="off" className={styles.form}>
+        <label className={styles.label}>
+          Email
           <input
             type="email"
             name="email"
@@ -41,8 +42,8 @@ export default function Login() {
           />
         </label>
 
-        <label>
-          Пароль
+        <label className={styles.label}>
+          Password
           <input
             type="password"
             name="password"
@@ -51,7 +52,9 @@ export default function Login() {
           />
         </label>
 
-        <button type="submit">Войти</button>
+        <button type="submit" className={styles.button}>
+          Log in
+        </button>
       </form>
     </div>
   );

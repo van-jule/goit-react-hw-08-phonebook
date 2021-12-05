@@ -11,13 +11,13 @@ export default function UserMenu() {
   return (
     <div className={styles.wrap}>
       <img className={styles.avatar} src={avatar} alt="avatar" width="32" />
-      <span>Добро пожаловать, {name}</span>
+      <span className={styles.name}>Welcome, {name}</span>
       <button
-        className={styles.logOutButton}
+        className={styles.button}
         type="button"
         onClick={() => dispatch(authOperations.logOut())}
       >
-        Выйти
+        Log out
       </button>
     </div>
   );
