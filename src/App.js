@@ -41,7 +41,13 @@ const App = () => {
         <Routes>
           <Route
             path="/login"
-            element={<PublicRoute component={Login} restricted />}
+            element={
+              <PublicRoute
+                component={Login}
+                restricted
+                redirectTo="/contacts"
+              />
+            }
           />
           <Route
             path="/register"
